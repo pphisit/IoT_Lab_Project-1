@@ -1,20 +1,18 @@
 ```ruby
+//2.LED 2 ดวง ติด-ดับ สลับกัน
+
 #include <Arduino.h>
 // กำหนดขา GPIO ที่เชื่อมกับ LED
 const int LED1_ON = 0;
 const int LED2_ON = 1;
 int state ;
 
-void setup() {
-  
+void setup() {  
   Serial.begin(115200);
-
-  // กำหนดขาที่เชื่อมกับ LED เป็น OUTPUT
   pinMode(D0, OUTPUT);
   pinMode(D1, OUTPUT);
   digitalWrite(D0, LOW);
-  digitalWrite(D1, LOW);
-  
+  digitalWrite(D1, LOW);  
 }
 
 void loop() {
@@ -33,6 +31,5 @@ void loop() {
       break;
   }
 }
-
 ```
 

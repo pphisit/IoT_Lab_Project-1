@@ -1,5 +1,6 @@
 ```ruby
-//1.	เปิด-ปิด LED ภายนอกโดยผ่าน Serial Monitor
+//1.เปิด-ปิด LED ภายนอกโดยผ่าน Serial Monitor
+
 #include <Arduino.h>
 const int LED_ON = 0;
 const int LED_OFF = 1;
@@ -13,11 +14,9 @@ void setup() {
 
 void loop() {
   // ตรวจสอบ Serial Monitor
-    while (!Serial.available()){} //เมื่อไม่มีการพิมพ์ใดๆ บน Serial monitor จะทำงานวนใน Loop นี้
-
+  while (!Serial.available()){} //เมื่อไม่มีการพิมพ์ใดๆ บน Serial monitor จะทำงานวนใน Loop นี้
   char command =Serial.read(); //อ่านค่าจากการพิมพ์ผ่าน Serial monitor โดยเก็บค่าที่อ่านได้ไว้ในตัวแปร command
   Serial.println(command); 
-
   switch (command) {
     case '1':    
       if (state == LED_OFF) {
@@ -36,7 +35,6 @@ void loop() {
     default:
       Serial.println("คำสั่งไม่ถูกต้อง");  }
 }
-
 ```
 
 

@@ -78,7 +78,6 @@ void loop()
         Segment_Display(Seg_val); // ส่งค่า Seg_val ไปที่ฟังก์ชัน Segment_Display
         state = SEGMENT_A_ROUND1; // เปลี่ยนสถานะไป SEGMENT_B
         break;
-
     }
 }
 void Segment_Display(int Seg_val) // ฟังก์ชันแสดงผล 7 Segment
@@ -89,5 +88,4 @@ void Segment_Display(int Seg_val) // ฟังก์ชันแสดงผล 
     }
     delay(500);
 }
-
 ```
