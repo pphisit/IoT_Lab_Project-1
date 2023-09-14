@@ -1,7 +1,8 @@
+### 1.เปิด-ปิด LED ภายนอกโดยผ่าน Serial Monitor
 ```ruby
-//1.เปิด-ปิด LED ภายนอกโดยผ่าน Serial Monitor
 
 #include <Arduino.h>
+
 const int LED_ON = 0;
 const int LED_OFF = 1;
 int state ;
