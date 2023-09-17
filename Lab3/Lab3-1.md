@@ -1,7 +1,6 @@
-### 1.การใช้ตัวต้านทานปรับค่าได้ ปรับความสว่างของ LED ภายนอก ผ่าน
+### 1.การใช้ตัวต้านทานปรับค่าได้ ปรับความสว่างของ LED ภายนอก 
 ```ruby
 #include <Arduino.h>
-
 const int READ_ANALOG_INPUT = 0;
 int state;
 int Valmap;

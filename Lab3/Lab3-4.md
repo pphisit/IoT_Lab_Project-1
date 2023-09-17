@@ -2,45 +2,54 @@
 ```ruby
 #include <Arduino.h>
 
+const int motorPin1 = D5; // สำหรับควบคุมทิศทางการหมุน
+const int motorPin2 = D6; // สำหรับควบคุมทิศทางการหมุน
 const int buttonPin = D1;
-const int motorPin1 = D5; 
-const int motorPin2 = D6; 
 int motorSpeed ;
-int state;
-const int CLOCKWISE = 0;
-const int ANTICLOCKWISE = 1;
+
+// กำหนดตัวแปรสำหรับ State Machine
+enum State { STOPPED, clockwise, anticlockwise };
+State currentState = clockwise; 
+
 
 void setup() {
-  Serial.begin(115200); 
+  Serial.begin(115200);
   pinMode(motorPin1, OUTPUT);
   pinMode(motorPin2, OUTPUT);
+  pinMode(A0, INPUT);
   pinMode(buttonPin, INPUT);
-  state = CLOCKWISE;
+
 }
 
 void loop() {
 
-  switch (state) {
+  switch (currentState) {
 
-    case CLOCKWISE:
+    case clockwise:
       motorSpeed =map(analogRead(A0),0,1023,0,255);
       Serial.println("clockwise  "+ String(motorSpeed));
       analogWrite(motorPin1, motorSpeed); 
       analogWrite(motorPin2, LOW);
-      if (digitalRead(buttonPin) == HIGH){
-        state = ANTICLOCKWISE; 
-      } 
+      if (digitalRead(buttonPin) == HIGH) {
+        while (digitalRead(buttonPin) == HIGH)
+        {
+        }
+        currentState = anticlockwise; 
+      }
       break;
 
-    case ANTICLOCKWISE:     
+    case anticlockwise:
       motorSpeed =map(analogRead(A0),0,1023,0,255);
       Serial.println("anticlockwise  "+ String(motorSpeed));
       analogWrite(motorPin1, LOW); 
       analogWrite(motorPin2, motorSpeed);
-      if (digitalRead(buttonPin) == HIGH){
-        state = CLOCKWISE; 
-      } 
+      if (digitalRead(buttonPin) == HIGH) {
+        while (digitalRead(buttonPin) == HIGH)
+        {
+        }
+        currentState = clockwise; 
       break;
-      }      
   }
+}
+}
 ```
