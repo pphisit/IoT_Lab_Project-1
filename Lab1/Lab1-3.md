@@ -1,4 +1,4 @@
-### 3.แสดงปีที่เกิดผ่าน LED 7- Segment 
+## 3.แสดงปีที่เกิดผ่าน LED 7- Segment 
 ```ruby
 #include "Arduino.h"
 int Digit_pins[] = {D0, D1, D2, D3};               // กำหนด Port สำหรับขา Digit D1 ถึง D4

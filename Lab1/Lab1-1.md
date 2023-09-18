@@ -1,4 +1,4 @@
-### 1.เปิด-ปิด LED ภายนอกโดยผ่าน Serial Monitor
+## 1.เปิด-ปิด LED ภายนอกโดยผ่าน Serial Monitor
 ```ruby
 
 #include <Arduino.h>

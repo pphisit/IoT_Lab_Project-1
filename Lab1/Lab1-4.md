@@ -1,4 +1,5 @@
-### 4.แสดงไฟวิ่งแบบย้อนกลับบน LED 7-Segment ตำแหน่ง A > F > G > C> D > E > G > B > A 
+## 4 แสดง LED 7 Segment ตามตำแหน่งที่กำหนด
+### ตำแหน่ง A > F > G > C> D > E > G > B > A 
 ```ruby
 #include "Arduino.h"
 int Digit_pins[] = {D0, D1, D2, D3};
