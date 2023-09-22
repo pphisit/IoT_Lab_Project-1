@@ -1,4 +1,4 @@
-## 2.กดปุ่มไฟLEDดับกดอีกครั้งไฟLEDติดโดยใช้ Interrupt และDebounce
+## 2.กดปุ่มไฟLEDดับกดอีกครั้งไฟLEDติดโดยใช้ Interrupt และDebounce ต่อวงจรแบบ Pull-Down
 ```ruby
 #include <Arduino.h>
 
