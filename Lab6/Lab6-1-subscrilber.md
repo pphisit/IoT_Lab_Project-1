@@ -1,4 +1,9 @@
 //Subscrilber
+* SERVER "203.158.245.180" 
+* MQTT_PORT 1883 
+* MQTT_USERNAME "admincpe"
+* MQTT_PASSWORD "cpe2541"
+
 ```ruby
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
@@ -14,7 +19,7 @@
 #define MQTT_NAME "YOUR NAME"
 
 //ชื่อ Topic
-#define MQTT_TOPIC "led_control"
+#define MQTT_TOPIC "---"
 
 WiFiClient client;
 PubSubClient mqtt(client);
