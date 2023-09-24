@@ -1,5 +1,12 @@
+```ruby
+
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
+#include <SPI.h>
+#include <Wire.h>
+#include <MFRC522.h>
+#define RST_PIN D1
+#define SS_PIN D2
 
 #define WIFI_STA_NAME "P" //ชื่อ wifi
 #define WIFI_STA_PASS "11223344A" //รหัส wifi
@@ -9,30 +16,30 @@
 //ข้อมูลผู้ใช้ ที่ใช้กับ Server
 #define MQTT_USERNAME "admincpe"
 #define MQTT_PASSWORD "cpe2541"
-#define MQTT_NAME "LED_ON_OFF"
+#define MQTT_NAME ""
 
 //ชื่อ Topic
-#define MQTT_TOPIC "switch_control"
-
-
+#define MQTT_TOPIC "rfid_control"
 WiFiClient client;
 PubSubClient mqtt(client);
 
 //กำหนด state ต่างๆ
 const int CHECK_CONNECT = 0;
-const int SWITCH_MESSAGE = 1;
-const int ON = 2;
-const int OFF = 3;
-int switch1Pin = D2; // กำหนดหมายเลขขาที่ต่อสวิตช์ 1
-int switch2Pin = D3; // กำหนดหมายเลขขาที่ต่อสวิตช์ 2
+const int READ_RFID = 1;
+const int SEND_MESSAGE = 2;
+MFRC522 mfrc522(SS_PIN, RST_PIN);
 
 int state;
+String initRFID = "54EA7AC";
+String valRFID;
+String readRFID();
 
 void setup()
 {
-    pinMode(switch1Pin, INPUT);
-    pinMode(switch2Pin, INPUT);
-
+    state = READ_RFID;
+    SPI.begin();
+    mfrc522.PCD_Init();
+    //pinMode(2, OUTPUT);
     state = CHECK_CONNECT;
     Serial.begin(115200);
 
@@ -65,44 +72,57 @@ void loop()
         if(mqtt.connect(MQTT_NAME, MQTT_USERNAME, MQTT_PASSWORD))
         {
             Serial.println("MQTT Connected.");
-            state = SWITCH_MESSAGE;
+            state = READ_RFID;
         }else{
             Serial.println("MQTT Fail Connected.");
             state = CHECK_CONNECT;
         }
     
     break;
-
- case SWITCH_MESSAGE: 
-    //mqtt.connect(MQTT_NAME, MQTT_USERNAME, MQTT_PASSWORD);
-    if(digitalRead(switch1Pin)==HIGH) // พิมพ์ ON เพื่อสั่งเปิด LED
-    {
-        while (digitalRead(switch1Pin)==HIGH)
-        {
+ case READ_RFID: //อ่านค่า RFID
+       if(mfrc522.PICC_IsNewCardPresent()&&mfrc522.PICC_ReadCardSerial())
+       {
+          valRFID = readRFID();
+          Serial.println("==========");
+          Serial.println("Read RFID");
+          //Serial.println("HEX: "+valRFID);
+          Serial.println("==========");
+          delay(1000);
+          state = SEND_MESSAGE;
         }
-        state = ON;
-        
+        else{
+        Serial.println("Wait RFID");
+        delay(1000);
+        }
+        break;
+
+ case SEND_MESSAGE: 
+    mqtt.connect(MQTT_NAME, MQTT_USERNAME, MQTT_PASSWORD);
+    if(valRFID == initRFID ) //พิมพ์ ON ไฟติด
+    {mqtt.publish(MQTT_TOPIC, "ON");
+        Serial.println("Success, LED ON");
+        delay(10000);
     }
-    if(digitalRead(switch2Pin)== HIGH) // พิมพ์ OFF เพื่อสั่งปิด LED
-    {
-         while (digitalRead(switch2Pin)==HIGH)
-        {
-        }       
-        state = OFF;
+    else if(valRFID != initRFID )
+    {// mqtt.publish(MQTT_TOPIC, "OFF");
+        Serial.println("Access Denied");
     }else{
-        Serial.println("Waiting for Switch");
+        Serial.println("Fail to sending");
     }
+    state = READ_RFID;
     break;
- 
- case ON:        
-        mqtt.publish(MQTT_TOPIC, "ON");
-        Serial.println("Success, Switch 1 ON");
-        state = SWITCH_MESSAGE;
-    break;
-  case OFF:
-        mqtt.publish(MQTT_TOPIC, "OFF");
-        Serial.println("Success, Switch 2 OFF");
-        state = SWITCH_MESSAGE;
-    break;
+ }
 }
+String readRFID()
+{
+  String content;
+    for(byte i =0; i<mfrc522.uid.size; i++)
+     {
+       content.concat(String(mfrc522.uid.uidByte[i] <0x10?"0":""));
+       content.concat(String(mfrc522.uid.uidByte[i], HEX));
+     }
+  content.toUpperCase();
+  return content.substring(1);
 }
+
+```
