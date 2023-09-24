@@ -1,6 +1,5 @@
 
-รับข้อความจาก Node คือ red INCREASE และ DECREASE เพื่อเพิ่ม-ลด ความสว่าง LED ทีล่ะ 10 หน่วย
-
+รับข้อความจาก Node คือ red INCREASE และ DECREASE เพื่อเพิ่ม-ลด ความสว่าง LED ทีล่ะ 10 หน่วย (ขา D0 ต่อ LED)
 ```ruby
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
