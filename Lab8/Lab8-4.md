@@ -1,11 +1,9 @@
 กำหนดให้ทำระบบแจ้งเตือนเมื่ออุณภูมิสูงเกิน 30 องศา โดยใช้ function node เป็นตัวกำหนดเงื่อไขการทำงาน
 
 ```ruby
-
 [
-    [
     {
-        "id": "dc457c6f1b613044",
+        "id": "36bae79f28adf1a5",
         "type": "tab",
         "label": "บท8",
         "disabled": false,
@@ -13,9 +11,9 @@
         "env": []
     },
     {
-        "id": "02f7ed67b7d8c44c",
+        "id": "399737ba10f12d75",
         "type": "ui_chart",
-        "z": "dc457c6f1b613044",
+        "z": "36bae79f28adf1a5",
         "name": "",
         "group": "c551eaa1ae24df22",
         "order": 1,
@@ -57,9 +55,9 @@
         ]
     },
     {
-        "id": "0f7e9d2e83a35e4f",
+        "id": "69bf6c57508a48af",
         "type": "ui_chart",
-        "z": "dc457c6f1b613044",
+        "z": "36bae79f28adf1a5",
         "name": "",
         "group": "11a858d05f83445d",
         "order": 1,
@@ -101,12 +99,12 @@
         ]
     },
     {
-        "id": "661ea4c041f1c5bb",
+        "id": "5200d2ffaa91685e",
         "type": "firebase-in",
-        "z": "dc457c6f1b613044",
+        "z": "36bae79f28adf1a5",
         "name": "",
         "constraint": {},
-        "database": "acc072ae6bd90de3",
+        "database": "ca5028033c5a512e",
         "listenerType": "value",
         "outputType": "string",
         "path": "/Sensor/Humidity",
@@ -115,38 +113,38 @@
         "y": 836.9999694824219,
         "wires": [
             [
-                "0f7e9d2e83a35e4f",
-                "e42253c097a73b8f",
-                "2807e8a5a28cd8bb"
+                "69bf6c57508a48af",
+                "58f9c593bf02f57e",
+                "feaca22f2f033fe8"
             ]
         ]
     },
     {
-        "id": "50ddc515eef199a3",
+        "id": "33b9c55adf1ae297",
         "type": "firebase-in",
-        "z": "dc457c6f1b613044",
+        "z": "36bae79f28adf1a5",
         "name": "",
         "constraint": {},
-        "database": "acc072ae6bd90de3",
+        "database": "ca5028033c5a512e",
         "listenerType": "value",
-        "outputType": "auto",
+        "outputType": "string",
         "path": "/Sensor/Temperature",
         "useConstraint": false,
         "x": 688.0000305175781,
         "y": 649.9999771118164,
         "wires": [
             [
-                "02f7ed67b7d8c44c",
-                "2c049dcc3a184ca6",
-                "1952cb2492d2ecaa",
-                "8d5efba5d4fa75ba"
+                "399737ba10f12d75",
+                "2cd21726f7d76211",
+                "8d49f440698308f8",
+                "3e5a87fd289684a5"
             ]
         ]
     },
     {
-        "id": "fd308ac13081a7e0",
+        "id": "42e1bf234262fd1c",
         "type": "comment",
-        "z": "dc457c6f1b613044",
+        "z": "36bae79f28adf1a5",
         "name": "ดึงค่าอุณหภูมิจาก Firebase",
         "info": "",
         "x": 698.0000076293945,
@@ -154,9 +152,9 @@
         "wires": []
     },
     {
-        "id": "4c31f046b55a7e77",
+        "id": "e7ab453c26bbd9a4",
         "type": "comment",
-        "z": "dc457c6f1b613044",
+        "z": "36bae79f28adf1a5",
         "name": "ดึงค่าความชื้นจาก Firebase",
         "info": "",
         "x": 698.0000076293945,
@@ -164,9 +162,9 @@
         "wires": []
     },
     {
-        "id": "274dc96832f9f6e9",
+        "id": "5445bd7376d3d5c2",
         "type": "comment",
-        "z": "dc457c6f1b613044",
+        "z": "36bae79f28adf1a5",
         "name": "แสดงกราฟความชื้น",
         "info": "",
         "x": 978.0000076293945,
@@ -174,9 +172,9 @@
         "wires": []
     },
     {
-        "id": "e408e5ec02d0540f",
+        "id": "9664f4759b726e48",
         "type": "comment",
-        "z": "dc457c6f1b613044",
+        "z": "36bae79f28adf1a5",
         "name": "แสดงกราฟอุณหภูมิ",
         "info": "",
         "x": 968.0000076293945,
@@ -184,9 +182,9 @@
         "wires": []
     },
     {
-        "id": "a2206bbc701cdc28",
+        "id": "4edadcf3e75fe23a",
         "type": "comment",
-        "z": "dc457c6f1b613044",
+        "z": "36bae79f28adf1a5",
         "name": "แสดงค่าอุณหภูมิ",
         "info": "",
         "x": 968.0000076293945,
@@ -194,9 +192,9 @@
         "wires": []
     },
     {
-        "id": "a1909f3241b56028",
+        "id": "a107581114ed8125",
         "type": "comment",
-        "z": "dc457c6f1b613044",
+        "z": "36bae79f28adf1a5",
         "name": "แสดงค่าความชื้น",
         "info": "",
         "x": 968.0000076293945,
@@ -204,9 +202,9 @@
         "wires": []
     },
     {
-        "id": "e42253c097a73b8f",
+        "id": "58f9c593bf02f57e",
         "type": "ui_text",
-        "z": "dc457c6f1b613044",
+        "z": "36bae79f28adf1a5",
         "group": "11a858d05f83445d",
         "order": 2,
         "width": 0,
@@ -221,9 +219,9 @@
         "wires": []
     },
     {
-        "id": "2c049dcc3a184ca6",
+        "id": "2cd21726f7d76211",
         "type": "ui_text",
-        "z": "dc457c6f1b613044",
+        "z": "36bae79f28adf1a5",
         "group": "c551eaa1ae24df22",
         "order": 2,
         "width": 0,
@@ -238,9 +236,9 @@
         "wires": []
     },
     {
-        "id": "2807e8a5a28cd8bb",
+        "id": "feaca22f2f033fe8",
         "type": "ui_gauge",
-        "z": "dc457c6f1b613044",
+        "z": "36bae79f28adf1a5",
         "name": "",
         "group": "11a858d05f83445d",
         "order": 2,
@@ -266,9 +264,9 @@
         "wires": []
     },
     {
-        "id": "1952cb2492d2ecaa",
+        "id": "8d49f440698308f8",
         "type": "ui_gauge",
-        "z": "dc457c6f1b613044",
+        "z": "36bae79f28adf1a5",
         "name": "",
         "group": "c551eaa1ae24df22",
         "order": 2,
@@ -294,12 +292,24 @@
         "wires": []
     },
     {
-        "id": "8c717ddc6ed690b7",
+        "id": "9e7e22c1ed30d12d",
+        "type": "ui_audio",
+        "z": "36bae79f28adf1a5",
+        "name": "",
+        "group": "c551eaa1ae24df22",
+        "voice": "Microsoft David - English (United States)",
+        "always": "",
+        "x": 960,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "d270c7740f6998c8",
         "type": "ui_toast",
-        "z": "dc457c6f1b613044",
-        "position": "top right",
-        "displayTime": "3",
-        "highlight": "",
+        "z": "36bae79f28adf1a5",
+        "position": "top left",
+        "displayTime": "",
+        "highlight": "red",
         "sendall": true,
         "outputs": 0,
         "ok": "OK",
@@ -308,41 +318,29 @@
         "className": "",
         "topic": "",
         "name": "",
-        "x": 939.4000244140625,
-        "y": 444.52498626708984,
+        "x": 990,
+        "y": 400,
         "wires": []
     },
     {
-        "id": "8d5efba5d4fa75ba",
+        "id": "3e5a87fd289684a5",
         "type": "function",
-        "z": "dc457c6f1b613044",
+        "z": "36bae79f28adf1a5",
         "name": "function 1",
-        "func": "if (msg.payload >= 26) { msg.payload = \"Danger High temperature\"; return msg; }\n",
+        "func": " if(msg.payload>30){\n\n        msg.payload=\"Warning High Temperature\"\nreturn msg;}\n\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 735.4000396728516,
-        "y": 411.8500061035156,
+        "x": 780,
+        "y": 380,
         "wires": [
             [
-                "8c717ddc6ed690b7",
-                "2e3b03dfe9234db4"
+                "9e7e22c1ed30d12d",
+                "d270c7740f6998c8"
             ]
         ]
-    },
-    {
-        "id": "2e3b03dfe9234db4",
-        "type": "ui_audio",
-        "z": "dc457c6f1b613044",
-        "name": "",
-        "group": "c551eaa1ae24df22",
-        "voice": "Microsoft David - English (United States)",
-        "always": "",
-        "x": 879.4000396728516,
-        "y": 349.68750762939453,
-        "wires": []
     },
     {
         "id": "c551eaa1ae24df22",
@@ -367,9 +365,9 @@
         "className": ""
     },
     {
-        "id": "acc072ae6bd90de3",
+        "id": "ca5028033c5a512e",
         "type": "database-config",
-        "name": "Peerapat Sariman",
+        "name": "My Database",
         "authType": "email",
         "claims": {},
         "createUser": false,
@@ -384,6 +382,5 @@
         "hidden": false
     }
 ]
-
 
 ```
