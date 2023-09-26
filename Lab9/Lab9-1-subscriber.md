@@ -48,9 +48,6 @@ void setup()
   state = CHECK_CONNECT;
   Serial.begin(115200);
   pinMode(D0, OUTPUT); // กำหนด pin D0 เป็น OUTPUT
-  pinMode(D1, OUTPUT); // กำหนด pin D1 เป็น OUTPUT
-  pinMode(D2, OUTPUT); // กำหนด pin D2 เป็น OUTPUT
-  pinMode(D3, OUTPUT); // กำหนด pin D3 เป็น OUTPUT
   WiFi.mode(WIFI_STA);
 
   Serial.println(WIFI_STA_NAME);

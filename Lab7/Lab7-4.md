@@ -1,4 +1,4 @@
-จากตัวอย่างข้อที่ 7.2 เปลี่ยนสีหมุด ของ gps
+ให้ใช้ sensor วัดอุณหภูมิและความชื้น หากอุณภูมิหากเกิน 30 ให้หมุดเป็นสีส้ม และ หากต่ำกว่า 30 ให้หมุดเป็นสีเขียว
 
 ```ruby
 #include <Arduino.h>
@@ -7,6 +7,7 @@
 #include <ESP8266WiFi.h>
 #include "addons/TokenHelper.h" // Firebase token generation
 #include "addons/RTDBHelper.h"  // Firebase Realtime Database helper
+#include "SHTC3.h"
 #include <DFRobot_sim808.h>
 #include <SoftwareSerial.h>
 #define WIFI_SSID "Finesrts49"
@@ -19,6 +20,7 @@
 #define PIN_TX D2
 SoftwareSerial mySerial(PIN_TX, PIN_RX);
 DFRobot_SIM808 sim808(&mySerial);
+void readTempHumid();                              // ฟังก์ชันสำหรับอ่านค่าอุณหภูมิและความชื้นจากเซ็นเซอร์
 void readLatLon();                                 // ฟังก์ชันสำหรับอ่านค่าอุณหภูมิและความชื้นจากเซ็นเซอร์
 void sendDataToFirebase(String path, String value); // ฟังก์ชันสำหรับส่งค่าอุณหภูมิและความชื้นไปยัง Firebase
 FirebaseData fbdo;                                 // Object สำหรับเก็บข้อมูลที่ได้จาก Firebase
@@ -32,8 +34,12 @@ String namePath;
 String longtitute;
 String latitute;
 String iconcolorPath;
+float temperature;                                
+float humidity;    
+SHTC3 shtc3(Wire);                                 
 const int READ_LOCATION = 0;
-const int SEND_DATA = 1;
+const int READ_TEMP_HUMID =1;
+const int SEND_DATA = 2;
 int state;
 void initWiFi()
 {
@@ -48,7 +54,8 @@ void initWiFi()
   Serial.println();
 }
 void setup()
-{
+{    
+    Wire.begin();
   state = READ_LOCATION;
   mySerial.begin(9600);
   Serial.begin(115200);
@@ -89,24 +96,48 @@ void loop()
     if (sim808.getGPS() )
   {    latitute = String(sim808.GPSdata.lat);
     longtitute = String(sim808.GPSdata.lon);
-    state = SEND_DATA;
+    state = READ_TEMP_HUMID;
   }else{
     Serial.println("GPS error");
     delay(1000);    
     state = READ_LOCATION;
   }
     break;
+    case READ_TEMP_HUMID:
+        readTempHumid();
+        state = SEND_DATA;
+        break;
+        
   case SEND_DATA:
     sendDataToFirebase(latPath, latitute); // ส่งค่าอุณหภูมิ และ path ไปยังฟังก์ชัน sendDataToFirebase
     sendDataToFirebase(lonPath, longtitute);   // ส่งค่าความชื้น และ path ไปยังฟังก์ชัน sendDataToFirebase 
-    sendDataToFirebase(namePath, "My location");   // ส่งค่าความชื้น และ path ไปยังฟังก์ชัน sendDataToFirebase
-    sendDataToFirebase(iconcolorPath, "#FF00FF");   // ส่งค่าความชื้น และ path ไปยังฟังก์ชัน sendDataToFirebase
+    if(temperature >30)   {
+     sendDataToFirebase(namePath, "Warning");   // ส่งค่าความชื้น และ path ไปยังฟังก์ชัน sendDataToFirebase
+    sendDataToFirebase(iconcolorPath, "#ff0000");   // ส่งค่าความชื้น และ path ไปยังฟังก์ชัน sendDataToFirebase}
+
+    else if(temperature <=30){
+sendDataToFirebase(namePath, "Normal");   // ส่งค่าความชื้น และ path ไปยังฟังก์ชัน sendDataToFirebase
+    sendDataToFirebase(iconcolorPath, "#40ff00");   // ส่งค่าความชื้น และ path ไปยังฟังก์ชัน sendDataToFirebase}
+
+    }
 
      delay(5000);
     state = READ_LOCATION;
     break;
   }
 }
+void readTempHumid()
+{
+    shtc3.begin(true);
+    shtc3.sample();
+    // ถ้า Firebase พร้อมทำงาน จะเก็บค่าอุณหภูมิและความชื้น
+    if (Firebase.ready())
+    {
+        delay(2000);
+        temperature = shtc3.readTempC();
+    }
+}
+
 void sendDataToFirebase(String path, String value)
 {
   // ถ้าส่งค่าไปยัง Firebase สำเร็จจะแสดงข้อความ "PASSED" และแสดง path และ type ของข้อมูลที่ Firebase ส่งกลับมา

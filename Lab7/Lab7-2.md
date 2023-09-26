@@ -1,4 +1,4 @@
-จากตัวอย่างข้อที่ 7.2 เปลี่ยนสีหมุด ของ gps
+จากข้อที่ 1 เปลี่ยน icon ของหมุด
 
 ```ruby
 #include <Arduino.h>
@@ -32,6 +32,7 @@ String namePath;
 String longtitute;
 String latitute;
 String iconcolorPath;
+String iconPath;
 const int READ_LOCATION = 0;
 const int SEND_DATA = 1;
 int state;
@@ -74,6 +75,7 @@ void setup()
   lonPath = databasePath + "/lon"; 
   namePath = databasePath + "/name";
   iconcolorPath = databasePath + "/iconColor";
+  iconPath = databasePath+"/icon";
   delay(5000);
   while (!sim808.attachGPS())
   {
@@ -101,7 +103,7 @@ void loop()
     sendDataToFirebase(lonPath, longtitute);   // ส่งค่าความชื้น และ path ไปยังฟังก์ชัน sendDataToFirebase 
     sendDataToFirebase(namePath, "My location");   // ส่งค่าความชื้น และ path ไปยังฟังก์ชัน sendDataToFirebase
     sendDataToFirebase(iconcolorPath, "#FF00FF");   // ส่งค่าความชื้น และ path ไปยังฟังก์ชัน sendDataToFirebase
-
+    sendDataToFirebase(iconPath, "fa-university");   
      delay(5000);
     state = READ_LOCATION;
     break;
