@@ -1,4 +1,4 @@
-ให้ใช้ sensor วัดอุณหภูมิและความชื้น หากอุณภูมิหากเกิน 30 ให้หมุดเป็นสีส้ม และ หากต่ำกว่า 30 ให้หมุดเป็นสีเขียว
+ให้ใช้ sensor วัดอุณหภูมิและความชื้น หากอุณภูมิหากเกิน 25 ให้หมุดเป็นสีส้ม และ หากต่ำกว่า 25 ให้หมุดเป็นสีเขียว
 
 ```ruby
 #include <Arduino.h>
@@ -111,13 +111,15 @@ void loop()
   case SEND_DATA:
     sendDataToFirebase(latPath, latitute); // ส่งค่าอุณหภูมิ และ path ไปยังฟังก์ชัน sendDataToFirebase
     sendDataToFirebase(lonPath, longtitute);   // ส่งค่าความชื้น และ path ไปยังฟังก์ชัน sendDataToFirebase 
-    if(temperature >30)   {
+    if(temperature >25)   {
      sendDataToFirebase(namePath, "Warning");   // ส่งค่าความชื้น และ path ไปยังฟังก์ชัน sendDataToFirebase
-    sendDataToFirebase(iconcolorPath, "#ff0000");   // ส่งค่าความชื้น และ path ไปยังฟังก์ชัน sendDataToFirebase}
+    sendDataToFirebase(iconcolorPath, "#ff0000");   // ส่งค่าความชื้น และ path ไปยังฟังก์ชัน sendDataToFirebase
+    }
 
-    else if(temperature <=30){
+    else if(temperature <=25){
 sendDataToFirebase(namePath, "Normal");   // ส่งค่าความชื้น และ path ไปยังฟังก์ชัน sendDataToFirebase
-    sendDataToFirebase(iconcolorPath, "#40ff00");   // ส่งค่าความชื้น และ path ไปยังฟังก์ชัน sendDataToFirebase}
+    sendDataToFirebase(iconcolorPath, "#40ff00");   // ส่งค่าความชื้น และ path ไปยังฟังก์ชัน sendDataToFirebase
+    }
 
     }
 
