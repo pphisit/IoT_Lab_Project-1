@@ -1,12 +1,11 @@
-
-รับข้อความจาก Node คือ red INCREASE และ DECREASE เพื่อเพิ่ม-ลด ความสว่าง LED ทีล่ะ 10 หน่วย (ขา D0 ต่อ LED)
+## รับข้อความจาก Node คือ red INCREASE และ DECREASE เพื่อเพิ่ม-ลด ความสว่าง LED ทีล่ะ 10 หน่วย (ขา D0 ต่อ LED)
 ```ruby
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
-#define WIFI_STA_NAME "P"             // ชื่อ wifi
-#define WIFI_STA_PASS "11223344A"     // รหัส wifi
-#define MQTT_SERVER "203.158.245.180" // Server Domain Name หรือ IP Address
-#define MQTT_PORT 1883                // Port MQTT Broker
+#define WIFI_STA_NAME "YOUR WIFI" //ชื่อ wifi
+#define WIFI_STA_PASS "YOUR PASSWORD" //รหัส wifi
+#define MQTT_SERVER "YOUR SERVER" //Server Domain Name หรือ IP Address
+#define MQTT_PORT 1883 //Port MQTT Broker
 
 // ข้อมูลผู้ใช้ ที่ใช้กับ Server
 #define MQTT_USERNAME "admincpe"

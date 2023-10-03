@@ -1,9 +1,6 @@
-//Subscrilber
-* SERVER "203.158.245.180" 
-* MQTT_PORT 1883 
-* MQTT_USERNAME "admincpe"
-* MQTT_PASSWORD "cpe2541"
+## กำหนดฝั่ง Publisher พิมพ์ข้อความ ON หรือ OFF ผ่าน Serial Monitor และส่งไปฝั่ง Subscriber รับข้อความเพื่อเปิด-ปิด LED
 
+//Subscrilber
 ```ruby
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>

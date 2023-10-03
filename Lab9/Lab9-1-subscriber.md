@@ -1,12 +1,12 @@
-เพิ่ม-ลด ความสว่าง LED
+## เพิ่ม-ลด ความสว่าง LED
 
 ```ruby
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
-#define WIFI_STA_NAME "Finesrts49"    // ชื่อ wifi
-#define WIFI_STA_PASS "pp173849"      // รหัส wifi
-#define MQTT_SERVER "203.158.245.180" // Server Domain Name หรือ IP Address
-#define MQTT_PORT 1883                // Port MQTT Broker
+#define WIFI_STA_NAME "YOUR WIFI" //ชื่อ wifi
+#define WIFI_STA_PASS "YOUR PASSWORD" //รหัส wifi
+#define MQTT_SERVER "YOUR SERVER" //Server Domain Name หรือ IP Address
+#define MQTT_PORT 1883 //Port MQTT Broker
 
 // ข้อมูลผู้ใช้ ที่ใช้กับ Server
 #define MQTT_USERNAME "admincpe"

@@ -1,4 +1,4 @@
-1.กำหนดค่ารหัส RFID เมื่อมีบัตรมาแตะรหัสตรงกันให้แสดง Correct RFID หากไม่ให้แสดง Incorrect RFID
+## กำหนดค่ารหัส RFID เมื่อมีบัตรมาแตะรหัสตรงกันให้แสดง Correct RFID หากไม่ให้แสดง Incorrect RFID
 ```ruby
 #include <Arduino.h>
 #include <SPI.h>

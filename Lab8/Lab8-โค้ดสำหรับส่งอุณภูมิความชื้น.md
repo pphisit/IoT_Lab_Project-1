@@ -1,11 +1,12 @@
+```ruby
 #include <Arduino.h>
 #include "SHTC3.h"
 #include <Firebase_ESP_Client.h> // Firebase library
 #include <ESP8266WiFi.h>
 #include "addons/TokenHelper.h" // Firebase token generation
 #include "addons/RTDBHelper.h"  // Firebase Realtime Database helper
-#define WIFI_SSID "Finesrts49"
-#define WIFI_PASSWORD "pp173849"
+#define WIFI_SSID "YOUR WIFI"
+#define WIFI_PASSWORD "YOUR PASSWORD"
 #define API_KEY "AIzaSyCGWi2Izt_pFKS81SyJaWyBXj-j91MhLgU"                                // API key ของ Firebase ที่ได้รับจากการสร้างโปรเจคใน Firebase Console
 #define USER_EMAIL "phisic1714@gmail.com"                             // อีเมลของบัญชี Firebase ที่ใช้สำหรับเข้าสู่ระบบ
 #define USER_PASSWORD "pee201100"                          // รหัสผ่านของบัญชี Firebase ที่ใช้สำหรับเข้าสู่ระบบ
@@ -110,3 +111,4 @@ void sendDataToFirebase(String path, float value)
         Serial.println("REASON: " + fbdo.errorReason());
     }
 }
+```

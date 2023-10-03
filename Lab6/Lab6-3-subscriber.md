@@ -1,4 +1,4 @@
-Node red รับค่ามาแสดงบน Debug node 
+## Node RED รับค่ามาแสดงบน Debug node 
 
 ```ruby
 [

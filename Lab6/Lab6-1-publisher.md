@@ -1,3 +1,4 @@
+## กำหนดฝั่ง Publisher พิมพ์ข้อความ ON หรือ OFF ผ่าน Serial Monitor และส่งไปฝั่ง Subscriber รับข้อความเพื่อเปิด-ปิด LED
 //Publisher
 ``` ruby
 #include <ESP8266WiFi.h>
